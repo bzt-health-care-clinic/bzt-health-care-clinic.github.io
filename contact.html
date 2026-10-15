@@ -42,10 +42,13 @@
 <input type="hidden" name="_captcha" value="false">
 <input type="text" name="_honey" style="display:none">
 <div class="form-row">
-<div class="form-group"><label for="name">姓名 Name *</label><input id="name" name="姓名 Name" type="text" required placeholder="您的姓名"></div>
-<div class="form-group"><label for="phone">电话 Phone *</label><input id="phone" name="电话 Phone" type="tel" required placeholder="联系电话"></div>
+<div class="form-group"><label for="lastname">姓 Family Name *</label><input id="lastname" name="姓 Family Name" type="text" required placeholder="姓"></div>
+<div class="form-group"><label for="firstname">名 Given Name *</label><input id="firstname" name="名 Given Name" type="text" required placeholder="名"></div>
 </div>
+<div class="form-row">
+<div class="form-group"><label for="phone">电话 Phone *</label><input id="phone" name="电话 Phone" type="tel" required placeholder="联系电话"></div>
 <div class="form-group"><label for="email">邮箱 Email</label><input id="email" name="邮箱 Email" type="email" placeholder="your@email.com"></div>
+</div>
 <div class="form-row">
 <div class="form-group"><label for="service">预约项目 Service *</label>
 <select id="service" name="预约项目 Service" required>
@@ -55,7 +58,8 @@
 </select></div>
 <div class="form-group"><label for="date">日期 Date</label><input id="date" name="日期 Date" type="text" inputmode="numeric" placeholder="YYYY-MM-DD" maxlength="10" autocomplete="off"><p class="date-error" id="date-error" style="display:none;color:#c0392b;font-size:14px;margin-top:6px">日期不对，请按 年年年年-月月-日日 填写，例如 2026-12-05。<br><span style="font-weight:400">Please enter the date as YYYY-MM-DD, e.g. 2026-12-05.</span></p></div>
 </div>
-<div class="form-group"><label for="message">留言 Message</label><textarea id="message" name="留言 Message" placeholder="症状描述、保险情况等 / Symptoms, insurance, etc."></textarea></div>
+<div class="form-group"><label for="insurance">保险公司 Insurance Provider</label><input id="insurance" name="保险公司 Insurance Provider" type="text" placeholder="如 Sun Life、Manulife… / e.g. Sun Life, Manulife"></div>
+<div class="form-group"><label for="message">留言 Message</label><textarea id="message" name="留言 Message" placeholder="症状描述等 / e.g. symptoms"></textarea></div>
 <button type="submit" class="btn" style="width:100%">提交预约 Submit Request</button>
 <p class="form-note">提交后预约请求将直接发送至诊所邮箱，我们会尽快与您确认时间。<br>Your request goes straight to the clinic — we'll confirm your time shortly.</p>
 </form>
