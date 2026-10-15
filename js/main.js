@@ -33,32 +33,42 @@ document.addEventListener("DOMContentLoaded", function () {
   // booking form -> FormSubmit (activated; posts to encrypted endpoint)
   var form = document.getElementById("booking-form");
 
-  // 日期框：禁掉过去的日期，最多约到一年后；输错后重选自动藏报错
+  // 日期框：纯文本输入，只收数字并自动补横杠 YYYY-MM-DD
+  // （手机自带 date 框在部分浏览器上年份会吞下 6 位数，不用它了）
   var dateFieldInit = document.getElementById("date");
   if (dateFieldInit) {
-    var pad2 = function (n) { return (n < 10 ? "0" : "") + n; };
-    var nowD = new Date();
-    var minS = nowD.getFullYear() + "-" + pad2(nowD.getMonth() + 1) + "-" + pad2(nowD.getDate());
-    var maxD = new Date(nowD); maxD.setFullYear(maxD.getFullYear() + 1);
-    var maxS = maxD.getFullYear() + "-" + pad2(maxD.getMonth() + 1) + "-" + pad2(maxD.getDate());
-    dateFieldInit.setAttribute("min", minS);
-    dateFieldInit.setAttribute("max", maxS);
-    dateFieldInit.addEventListener("change", function () {
+    dateFieldInit.addEventListener("input", function () {
+      var d = dateFieldInit.value.replace(/\D/g, "").slice(0, 8);
+      var out = d;
+      if (d.length > 4) out = d.slice(0, 4) + "-" + d.slice(4);
+      if (d.length > 6) out = d.slice(0, 4) + "-" + d.slice(4, 6) + "-" + d.slice(6);
+      dateFieldInit.value = out;
       var de = document.getElementById("date-error");
-      if (de && dateFieldInit.validity.valid) de.style.display = "none";
+      if (de && /^\d{4}-\d{2}-\d{2}$/.test(out)) de.style.display = "none";
     });
   }
 
   if (form) {
     form.addEventListener("submit", function (e) {
       e.preventDefault();
-      // 日期校验：手机浏览器上年份输成 6 位数时，原生框的值会作废或畸形，这里拦下并提示重选
+      // 日期校验：必须为 YYYY-MM-DD，且是真实存在、不早于今天、不超过一年后的日子
       var dateField = document.getElementById("date");
       var dateErr = document.getElementById("date-error");
       if (dateErr) dateErr.style.display = "none";
       var dateVal = dateField ? dateField.value : "";
-      var dateBad = !!dateField && (!dateField.validity.valid ||
-        (dateVal !== "" && !/^\d{4}-\d{2}-\d{2}$/.test(dateVal)));
+      var dateBad = false;
+      if (dateVal !== "") {
+        var dm = /^(\d{4})-(\d{2})-(\d{2})$/.exec(dateVal);
+        if (!dm) { dateBad = true; }
+        else {
+          var dyy = +dm[1], dmm = +dm[2], ddd = +dm[3];
+          var dobj = new Date(dyy, dmm - 1, ddd);
+          var t0 = new Date(); t0.setHours(0, 0, 0, 0);
+          var tmax = new Date(t0); tmax.setFullYear(tmax.getFullYear() + 1);
+          if (dobj.getFullYear() !== dyy || dobj.getMonth() !== dmm - 1 || dobj.getDate() !== ddd ||
+              dobj < t0 || dobj > tmax) { dateBad = true; }
+        }
+      }
       if (dateBad) {
         if (dateErr) dateErr.style.display = "block";
         dateField.focus();
