@@ -52,11 +52,14 @@ document.addEventListener("DOMContentLoaded", function () {
   if (form) {
     form.addEventListener("submit", function (e) {
       e.preventDefault();
-      // 日期校验：手机浏览器上年份输成 6 位数时，原生框的值会作废，这里拦下并提示重选
+      // 日期校验：手机浏览器上年份输成 6 位数时，原生框的值会作废或畸形，这里拦下并提示重选
       var dateField = document.getElementById("date");
       var dateErr = document.getElementById("date-error");
       if (dateErr) dateErr.style.display = "none";
-      if (dateField && !dateField.validity.valid) {
+      var dateVal = dateField ? dateField.value : "";
+      var dateBad = !!dateField && (!dateField.validity.valid ||
+        (dateVal !== "" && !/^\d{4}-\d{2}-\d{2}$/.test(dateVal)));
+      if (dateBad) {
         if (dateErr) dateErr.style.display = "block";
         dateField.focus();
         return;
