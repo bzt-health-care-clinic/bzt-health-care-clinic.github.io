@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact 联系我们 | BZT Health Care Clinic 弼正堂</title>
+<meta name="description" content="Book an appointment at BZT Health Care Clinic, Coquitlam BC. Call 778-252-8818 or use the online booking form.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css"><link rel="icon" href="images/logo.png">
+</head>
+<body>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="index.html"><img src="images/logo.png" alt="logo"><span><span class="brand-name">BZT Health Care Clinic 弼正堂</span><br><span class="brand-sub">BZT Health &amp; Investments LTD</span></span></a>
+<button class="nav-toggle" aria-label="Menu">☰</button>
+<nav class="main-nav"><a href="index.html">Home</a><a href="business-hours.html">Business Hours</a><a href="services.html">Our Services</a><a href="price.html">Price</a><a href="health-tips.html">Health Tips</a><a href="contact.html" class="active">Contact</a><a href="#booking" class="btn" style="padding:9px 20px">Appointment Now</a></nav>
+</div></header>
+<section class="page-hero"><div class="container"><h1>Contact</h1><p class="zh-sub">联系我们</p></div></section>
+
+<div class="container"><section class="section">
+<div class="contact-grid">
+<div class="contact-card">
+<h3>Clinic Info 诊所信息</h3>
+<div class="contact-row"><span class="icon">📍</span><span>1128 Kensal Place, Coquitlam, BC V3B 0J2</span></div>
+<div class="contact-row"><span class="icon">📞</span><a href="tel:+17782528818">778-252-8818</a></div>
+<div class="contact-row"><span class="icon">✉️</span><a href="mailto:shirley.zqx@gmail.com">shirley.zqx@gmail.com</a></div>
+<div class="contact-row"><span class="icon">🕐</span><span>周四 Thu 2:00 pm – 6:00 pm<br>周日 Sun 10:00 am – 8:00 pm<br><span class="zh">仅限预约 By appointment only</span></span></div>
+<div class="alert-green mt-3">预约请指定针灸师 Shirley Xu<br><span style="font-weight:400;font-size:14px">Please specify acupuncturist Shirley Xu when booking.</span></div>
+<div class="qr-row">
+<div class="qr-box"><img src="images/qr-appointment.png" alt="Appointment QR code"><p>扫描QR码预约<br>Scan QR to reserve</p></div>
+</div>
+</div>
+
+<div class="contact-card" id="booking">
+<h3>Book Appointment 在线预约</h3>
+<p class="zh" style="font-size:14px;margin-bottom:18px">填写下表预约，我们会尽快与您确认。</p>
+<div class="form-success" id="form-success">✓ 预约已发送！我们会尽快与您联系确认。<br><span style="font-weight:400">Your request was sent. We'll confirm with you shortly.</span></div>
+<div class="form-success" id="form-error" style="display:none;background:#fdf0ec;border-color:#c0392b;color:#922b21">发送失败，请稍后重试或直接致电 778-252-8818。<br><span style="font-weight:400">Something went wrong — please try again or call us.</span></div>
+<form id="booking-form" action="https://formsubmit.co/ajax/shirley.zqx@gmail.com" method="POST">
+<input type="hidden" name="_subject" value="新的预约请求 New booking request">
+<input type="hidden" name="_template" value="table">
+<input type="hidden" name="_captcha" value="false">
+<input type="text" name="_honey" style="display:none">
+<div class="form-row">
+<div class="form-group"><label for="name">姓名 Name *</label><input id="name" name="姓名 Name" type="text" required placeholder="您的姓名"></div>
+<div class="form-group"><label for="phone">电话 Phone *</label><input id="phone" name="电话 Phone" type="tel" required placeholder="联系电话"></div>
+</div>
+<div class="form-group"><label for="email">邮箱 Email</label><input id="email" name="邮箱 Email" type="email" placeholder="your@email.com"></div>
+<div class="form-row">
+<div class="form-group"><label for="service">预约项目 Service *</label>
+<select id="service" name="预约项目 Service" required>
+<option value="">请选择 / Please select</option>
+<option>针灸 Acupuncture</option><option>拔罐/刮痧 Cupping / GuaSha</option>
+<option>贴耳豆 Ear Seeds</option><option>中药 Herbs</option><option>面部美容 Facial</option><option>其他 Other</option>
+</select></div>
+<div class="form-group"><label for="date">希望日期 Preferred Date</label><input id="date" name="希望日期 Preferred Date" type="date"></div>
+</div>
+<div class="form-group"><label for="message">留言 Message</label><textarea id="message" name="留言 Message" placeholder="症状描述、保险情况等 / Symptoms, insurance, etc."></textarea></div>
+<button type="submit" class="btn" style="width:100%">提交预约 Submit Request</button>
+<p class="form-note">提交后预约请求将直接发送至诊所邮箱，我们会尽快与您确认时间。<br>Your request goes straight to the clinic — we'll confirm your time shortly.</p>
+</form>
+</div>
+</div>
+
+<div class="map-wrap"><iframe title="Clinic map" loading="lazy" src="https://www.google.com/maps?q=1128+Kensal+Place,+Coquitlam,+BC+V3B+0J2&output=embed"></iframe></div>
+</section></div>
+
+<footer class="site-footer"><div class="footer-inner">
+<div><h4>BZT Health Care Clinic 弼正堂</h4><p>BZT Health &amp; Investments LTD<br>Shirley Xu （徐子荃） R.TCM.P, R.Ac</p></div>
+<div><h4>Contact 联系</h4><ul><li>📍 1128 Kensal Place, Coquitlam, BC V3B 0J2</li><li>📞 <a href="tel:+17782528818">778-252-8818</a></li><li>✉️ <a href="mailto:shirley.zqx@gmail.com">shirley.zqx@gmail.com</a></li></ul></div>
+<div><h4>Hours 营业时间</h4><ul><li>周四 Thu: 2:00 pm – 6:00 pm</li><li>周日 Sun: 10:00 am – 8:00 pm</li><li>By appointment only 仅限预约</li></ul></div>
+</div><div class="footer-bottom">© <span id="year">2026</span> BZT Health Care Clinic 弼正堂. All rights reserved.</div></footer>
+<script src="js/main.js"></script></body></html>
