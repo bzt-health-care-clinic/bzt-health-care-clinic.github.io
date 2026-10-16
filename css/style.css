@@ -277,3 +277,23 @@ h1, h2, h3, .serif {
   .section { padding: 44px 0; }
   .hero { min-height: 420px; }
 }
+
+/* ---- Language toggle (一键中英切换) ---- */
+html[data-lang="zh"] .t-en { display: none !important; }
+html[data-lang="en"] .t-zh { display: none !important; }
+.lang-toggle {
+  border: 1.5px solid var(--brown-deep);
+  background: transparent;
+  color: var(--brown-deep);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-left: 8px;
+  white-space: nowrap;
+}
+.lang-toggle:hover { background: var(--brown-deep); color: var(--cream); }
+@media (max-width: 860px) {
+  .lang-toggle { margin-left: 0; }
+}

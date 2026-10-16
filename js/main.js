@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function () {
       var btn = form.querySelector('button[type="submit"]');
       var original = btn.textContent;
       btn.disabled = true;
-      btn.textContent = "发送中… / Sending…";
+      btn.textContent = document.documentElement.getAttribute("data-lang") === "en" ? "Sending…" : "发送中…";
       fetch(form.action, {
         method: "POST",
         headers: { "Accept": "application/json" },
@@ -102,6 +102,41 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
   }
+
+
+  // ---- Language toggle (一键中英切换) ----
+  var rootEl = document.documentElement;
+  function applyLang(lang) {
+    rootEl.setAttribute('data-lang', lang);
+    rootEl.setAttribute('lang', lang === 'zh' ? 'zh-CN' : 'en');
+    try { localStorage.setItem('bzt-lang', lang); } catch (e) {}
+    var tt = document.querySelector('title');
+    if (tt) {
+      var tv = lang === 'zh' ? tt.getAttribute('data-title-zh') : tt.getAttribute('data-title-en');
+      if (tv) tt.textContent = tv;
+    }
+    document.querySelectorAll('[data-ph-zh]').forEach(function (el) {
+      var pv = lang === 'zh' ? el.getAttribute('data-ph-zh') : el.getAttribute('data-ph-en');
+      if (pv !== null) el.setAttribute('placeholder', pv);
+    });
+    document.querySelectorAll('[data-text-zh]').forEach(function (el) {
+      var xv = lang === 'zh' ? el.getAttribute('data-text-zh') : el.getAttribute('data-text-en');
+      if (xv !== null) el.textContent = xv;
+    });
+    document.querySelectorAll('.lang-toggle').forEach(function (b) {
+      b.textContent = lang === 'zh' ? 'EN' : '中文';
+      b.setAttribute('aria-label', lang === 'zh' ? 'Switch to English' : '切换到中文');
+    });
+  }
+  var savedLang = null;
+  try { savedLang = localStorage.getItem('bzt-lang'); } catch (e) {}
+  var initialLang = savedLang || (((navigator.language || '').toLowerCase().indexOf('zh') === 0) ? 'zh' : 'en');
+  applyLang(initialLang);
+  document.querySelectorAll('.lang-toggle').forEach(function (b) {
+    b.addEventListener('click', function () {
+      applyLang(rootEl.getAttribute('data-lang') === 'zh' ? 'en' : 'zh');
+    });
+  });
 
   // footer year
   var y = document.getElementById("year");
